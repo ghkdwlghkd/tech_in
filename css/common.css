@@ -1,0 +1,26 @@
+
+.process_stat{
+	background-color: #a1e1ae;
+}
+
+
+.urgent_style{
+	color : yellow;
+	background-color: red;
+}
+
+.big_process_stat{
+	background-color: #d3f2ff;
+}
+
+.big_process_stat1{
+	background-color: #beecff;
+}
+
+.out_process_stat{
+	background-color: #eed3ff;
+}
+
+.out_process_stat1{
+	background-color: #e9c5ff;
+}

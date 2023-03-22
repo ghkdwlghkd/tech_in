@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="shortcut icon" href="#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>TECH_IN</title>
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<!--J 쿼리 사용 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+	
+<style>
+    #my_modal {
+        display: none;
+        width: 600px;
+        padding: 20px 60px;
+        background-color: #fefefe;
+        border: 1px solid #888;
+        border-radius: 3px;
+    }
+
+    #my_modal .modal_close_btn {
+        top: 10px;
+        right: 10px;
+    }
+	 th {
+        font-size: 1.2em;
+		height : 50px;
+		vertical-align: middle;	
+    }
+</style>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">TECH_IN </div>
+            </a>
+			<%-include('../siderbar.ejs')%>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+			
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					
+				
+				   <!-- Sidebar Toggle (Topbar) -->
+          
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <!-- Dropdown - Alerts -->
+             
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <!-- Dropdown - Messages -->
+                        </li>
+
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+							<button type = "button" class = "btn btn-primary btn-sm" onclick = "re()" style = "background-color: #808cf5; border-color: #808cf5;" id = "count">60</button>
+                           
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+             
+                    <!-- DataTales Example -->
+               <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+							
+                            <h6 class="m-0 font-weight-bold text-primary">관리</h6>
+						 </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+								<table class="table table-bordered" style = "width : 50% ; margin-left : 400px;">
+								  <tr>
+									<td colspan = "3" style ="color : black; background-color: yellow;"><b>긴급메세지</b></td>
+								  </tr>
+									<% for(var i = 0; i < row.length; i++) { %>
+										<% 	if (row[i].urgent_message != '') 
+											{%> 
+													<tr>
+														<td class = "urgent_style" style = "width: 6%;"><b><%=i+1%></b></td>
+														<td class = "urgent_style" style = "width: 20%;"><b><%=row[i].customer%></b></td>
+														<td style = "text-align: left;"><b><%=row[i].urgent_message%></b></td>
+													</tr>
+											<%}
+											else if(row[i].urgent_message == '') 
+											{ %><% }
+										%>
+									<% } %>
+								</table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+										
+                                        <tr>
+											<th>no</th>	
+                                            <th>고객명</th>
+											<th>작번</th>
+											<th>발주일</th>
+											<th>납기일</th>
+											<th class ="big_process_stat1" >레이저</th>
+                                            <th class ="big_process_stat1" >절곡</th>
+											<th class ="big_process_stat1" >용접</th>
+                                            <th class ="big_process_stat1" >후처리</th>
+                                            <th class ="big_process_stat1" >납품</th>
+                                            <th class ="out_process_stat1" >레이저외주</th>
+											<th class ="out_process_stat1" >절곡외주</th>
+											<th class ="out_process_stat1" >용접외주</th>
+											<th class ="out_process_stat1" >후처리외주</th>
+											<th>외주</th>
+											<th>긴급</th>
+											<th>진행</th>
+                                        </tr>
+                                    </thead>
+                         
+                                    <tbody>
+                                       <% for(var i = 0; i < row.length; i++) { %>
+										<tr>
+											<% if (row[i].urgent_message == '') 
+												{ %> <td><%=i+1%></td><% }
+											   else if (row[i].urgent_message != '')
+												{ %> <td class = "urgent_style"><b><%=i+1%></b></td><% }
+											%> 
+											<% if (row[i].urgent_message == '' ) 
+												{ %> <td><%=row[i].customer%></td><% }
+											   else if (row[i].urgent_message != '')
+												{ %> <td class = "urgent_style"><b><%=row[i].customer%></b></td><% }
+											%> 
+											<td><%=row[i].work_no%></td>
+											<td><%=row[i].order_date%></td>
+											<td><%=row[i].shipping_date%></td>
+											<% 	if (row[i].proc.indexOf('L') !==-1 && row[i].status <= 9 && row[i].laiser_out_com == '') 
+												{ %><td class ="big_process_stat">지시대기</td><% }
+											   else if (row[i].proc.indexOf('L') !==-1 && row[i].status <= 10 && row[i].laiser_out_com == '') 
+												{ %><td class ="big_process_stat">대기</td><% }
+											   else if (row[i].proc.indexOf('L') !==-1 && row[i].status <= 10 && row[i].laiser_out_com != '') 
+												{ %><td class ="big_process_stat">외주</td><% }
+											   else if (row[i].proc.indexOf('L') !==-1 && row[i].status >= 10 && row[i].laiser_out_com != '') 
+												 { %><td class ="process_stat"><b>외주완료</b></td><% }
+											   else if (row[i].proc.indexOf('L') !==-1 && row[i].status == 11) 
+												{ %><td class ="big_process_stat">진행중</td><% }
+											   else if (row[i].proc.indexOf('L') !==-1 && row[i].status >= 12) 
+												{ %><td class = "process_stat"><b>작업완료</b></td><% }
+											   else
+												{ %><td class ="big_process_stat"></td><% }
+											%> 
+											<% if (row[i].proc.indexOf('B') !==-1 && row[i].status <= 9 && row[i].bending_out_com == '') 
+												{ %><td class ="big_process_stat">지시대기</td><% }
+											   else if (row[i].proc.indexOf('B') !==-1 && row[i].status <= 20 && row[i].bending_out_com == '') 
+												{ %><td class ="big_process_stat">대기</td><% }
+											   else if (row[i].proc.indexOf('B') !==-1 && row[i].status <=20 && row[i].bending_out_com != '') 
+												{ %><td class ="big_process_stat">외주</td><% }
+											   else if (row[i].proc.indexOf('B') !==-1 && row[i].status >= 20 && row[i].bending_out_com != '') 
+												{ %><td class ="process_stat"><b>외주완료</b></td><% }
+											   else if (row[i].proc.indexOf('B') !==-1 && row[i].status == 21) 
+												{ %><td class ="big_process_stat">작업중</td><% }
+											   else if (row[i].proc.indexOf('B') !==-1 && row[i].status >= 22) 
+												{ %><td class = "process_stat"><b>작업완료</b></td><% }
+											   else
+												{ %><td class ="big_process_stat"></td><% }
+											%> 
+											<% if (row[i].proc.indexOf('W') !==-1 && row[i].status <= 9 && row[i].welding_out_com == '') 
+												{ %><td class ="big_process_stat">지시대기</td><% }
+											   else	if (row[i].proc.indexOf('W') !==-1 && row[i].status <= 30 && row[i].welding_out_com == '') 
+												{ %><td class ="big_process_stat">대기</td><% }
+											   else if (row[i].proc.indexOf('W') !==-1 && row[i].status <= 30 && row[i].welding_out_com != '') 
+												{ %><td class ="big_process_stat">외주</td><% }
+											   else if (row[i].proc.indexOf('W') !==-1 && row[i].status >= 30 && row[i].welding_out_com != '') 
+												{ %><td class ="process_stat"><b>외주완료</b></td><% }
+											   else if (row[i].proc.indexOf('W') !==-1 && row[i].status == 31) 
+												{ %><td class ="big_process_stat">작업중</td><% }
+											   else if (row[i].proc.indexOf('W') !==-1 && row[i].status >= 32) 
+												{ %><td class = "process_stat"><b>작업완료</b></td><% }
+											   else
+												{ %><td class ="big_process_stat"></td><% }
+											%> 
+											<% if (row[i].proc.indexOf('P') !==-1 && row[i].status <= 9 && row[i].process_out_com == '') 
+												{ %><td class ="big_process_stat">지시대기</td><% }
+											   else	if (row[i].proc.indexOf('P') !==-1 && row[i].status <= 40 && row[i].process_out_com == '') 
+												{ %><td class ="big_process_stat">대기</td><% }
+											   else if (row[i].proc.indexOf('P') !==-1 && row[i].status <= 40 && row[i].process_out_com != '') 
+												{ %><td class ="big_process_stat">외주</td><% }
+											   else if (row[i].proc.indexOf('P') !==-1 && row[i].status >= 40 && row[i].process_out_com != '') 
+												{ %><td class ="process_stat"><b>외주완료</b></td><% }
+											   else if (row[i].proc.indexOf('P') !==-1 && row[i].status == 41) 
+												{ %><td class ="big_process_stat">작업중</td><% }
+											   else if (row[i].proc.indexOf('P') !==-1 && row[i].status >= 42) 
+												{ %><td class = "process_stat"><b>작업완료</b></td><% }
+											   else
+												{ %><td class ="big_process_stat"></td><% }
+											%> 
+											<% if (row[i].shipping == 'y' && row[i].status == '100') 
+												{ %><td class = "process_stat"><b>완료</b></td><% }
+											   else
+												{ %><td class ="big_process_stat"></td><% }
+											%> 
+											<% if (row[i].laiser_out_com != 'n') 
+												{ %><td class ="out_process_stat"><b><%=row[i].laiser_out_com%></b></td><% }
+											   else
+												{ %><td class ="out_process_stat"></td><% }
+											%>
+											<% if (row[i].bending_out_com != 'n') 
+												{ %><td class ="out_process_stat"><b><%=row[i].bending_out_com%></b></td><% }
+											   else
+												{ %><td class ="out_process_stat"></td><% }
+											%> 
+											<% if (row[i].welding_out_com != 'n') 
+												{ %><td class ="out_process_stat"><b><%=row[i].welding_out_com%></b></td><% }
+											   else
+												{ %><td class ="out_process_stat"></td><% }
+											%>
+											<% if (row[i].process_out_com != 'n') 
+												{ %><td class ="out_process_stat"><b><%=row[i].process_out_com%></b></td><% }
+											   else
+												{ %><td class ="out_process_stat"></td><% }
+											%>							
+											<% if (row[i].status == 100) 
+												{ %><td><button type = "button" class="btn btn-primary btn btn-lg" style = "background-color: #D3D3D3;border-color: #D3D3D3;" disabled>완료</button></td><% }
+											   else
+												{ %><td style = "padding:0"><button type = "button" class="btn btn-primary btn btn-lg btn-success" data-toggle="modal" data-target="#addModal" onclick = "pop_outsource_add_select(<%=row[i].no%>)">외주</button></td><% }
+											%> 
+											<% if (row[i].status == 100) 
+												{ %><td style = "padding:0"><button type = "button" class="btn btn-primary btn btn-lg" style = "background-color: #D3D3D3;border-color: #D3D3D3;" disabled>완료</button></td><% }
+											   else
+												{ %><td style = "padding:0"><button type = "button" class="btn btn-danger btn btn-lg" data-toggle="modal" data-target="#urgentModal" onclick = "pop_urgent_select(<%=row[i].no%>)">긴급</button></td><% }
+											%> 
+											<% if (row[i].status <= 4) 
+												{ %><td style = "padding:0"><button type = "button" class="btn btn-primary btn btn-lg"onclick = "order_first_start(<%=row[i].no%>,<%=row[i].work_key%>,'<%=row[i].file_name%>','<%=row[i].key_no%>')">진행</button></td><% }
+											   else if (row[i].status == 100)
+												{ %><td style = "padding:0"><button type = "button" class="btn btn-primary btn btn-lg" style = "background-color: #D3D3D3;border-color: #D3D3D3;" disabled>완료</button></td><% }
+											   else
+												{ %><td style = "padding:0"><button type = "button" class="btn btn-primary btn btn-lg" style = "background-color: #D3D3D3;border-color: #D3D3D3;" disabled>진행중</button></td><% }
+											%> 
+                                        </tr>
+									<% } %>
+                                    </tbody>
+                                </table>
+								<div style = "float : right; padding-top : 10px">
+									
+                       			</div>
+                            
+							</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+		
+
+	<!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<!-- 외주 등록 버튼 모달-->
+	    <div class="modal fade" id="addModal" data-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div id="model_view_10">
+
+				  <div class="modal-header">
+					<h4 class="modal-title"><i class="fa fa-pencil-square-o"></i> 외주 등록</h4>
+				  </div>
+
+				  <div class="modal-body">
+					<div class="box-body">
+
+					  <div class="">
+						<div class="col-xs-12">
+						  <div class="box">
+
+							<input type="hidden" name="ano" id="ano" value="778">
+							<input type="hidden" name="company" id="company" value="part1_업체">
+					 
+
+							<table class="table tb-list table-bordered">
+							  <tbody>
+								<input type="hidden" class = "form-control" id ="no"> 
+								<tr>
+								  <th style = "width : 20%">고객명</th>
+						 		  <th style = "width : 30%">
+								  <input type="text" class = "form-control" id ="customer" disabled>
+								  </th>
+								  <th style = "width : 20%">작번</th>
+						 		  <th style = "width : 30%">
+								  <input type="text" class = "form-control" id ="work_key" disabled>
+								  </th>
+								</tr>
+								<tr>
+								  <th style = "width : 20%">발주일</th>
+						 		  <th style = "width : 30%">
+								  <input type="date" class = "form-control" id ="order_date" disabled>
+								  </th>
+								  <th style = "width : 20%">납기일</th>
+						 		  <th style = "width : 30%">
+								  <input type="date" class = "form-control" id ="shipping_date" disabled>
+								  </th>
+								</tr>
+								<tr>
+								  <th style = "width : 20%">레이저 외주</th>
+						 		  <th style = "width : 30%" colspan = "3">
+								<input type="text" class = "form-control " id ="laiser_out_com">
+								  </th>
+								</tr>
+								<tr>
+								  <th style = "width : 20%">절곡 외주</th>
+						 		  <th style = "width : 30%" colspan = "3">
+								  <input type="text" class = "form-control" id ="bending_out_com">
+								  </th>
+								</tr>
+								<tr>
+								  <th style = "width : 20%">용접 외주</th>
+						 		  <th style = "width : 30%" colspan = "3">
+								  <input type="text" class = "form-control" id ="welding_out_com">
+								  </th>
+								</tr>
+								  <tr>
+								  <th style = "width : 20%">후처리 외주</th>
+						 		  <th style = "width : 30%" colspan = "3">
+								  <input type="text" class = "form-control" id ="process_out_com">
+								  </th>
+								</tr>
+							  </tbody>
+							</table>
+
+							<div class="box-footer text-center">
+							  <button type="button" class="btn btn-sm btn-primary btn-add-ncr" data-ano="" onclick = 'pop_outsource_add()'>등록</button>
+							  <button class="btn btn-sm btn-danger" type="button" data-dismiss="modal" onclick = 'pop_outsource_close()'>닫기</button>
+								
+							</div>
+
+
+						  </div>
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+
+				</div>
+            </div>
+        </div>
+    </div>
+	
+	<!-- 긴급 등록 버튼 모달-->
+	    <div class="modal fade" id="urgentModal" data-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div id="model_view_10">
+
+				  <div class="modal-header">
+					<h4 class="modal-title">긴급 등록</h4>
+					<button type = "button" class="btn btn-primary btn btn-sm btn-danger" id = "urgent_message_del" onclick = "pop_urgent_delete()"><i class="fa fa-pencil-square-o"></i>긴급 메세지 삭제</button>
+				  </div>
+							
+				  <div class="modal-body">
+					<div class="box-body">
+
+					  <div class="">
+						<div class="col-xs-12">
+						  <div class="box">
+							<input type="hidden" class = "form-control" id ="no"> 
+							<table class="table tb-list table-bordered">
+							  
+								<tbody>
+								 <input type="hidden" class = "form-control" id ="no">
+								  <input type="hidden" class = "form-control" id ="status">
+								 <tr>
+								  <th style = "width : 20%">고객명</th>
+						 		  <th style = "width : 30%">
+								  <input type="text" class = "form-control" id ="urgent_customer" disabled>
+								  </th>
+								  <th style = "width : 20%">작번</th>
+						 		  <th style = "width : 30%">
+								  <input type="text" class = "form-control" id ="urgent_work_key" disabled>
+								  </th>
+								</tr>
+								<tr>
+								  <th style = "width : 20%">발주일</th>
+						 		  <th style = "width : 30%">
+								  <input type="date" class = "form-control" id ="urgent_order_date" disabled>
+								  </th>
+								  <th style = "width : 20%">납기일</th>
+						 		  <th style = "width : 30%">
+								  <input type="date" class = "form-control" id ="urgent_shipping_date" disabled>
+								  </th>
+								</tr>
+								<tr>
+								  <th style = "width : 20%">긴급 메세지</th>
+						 		  <th style = "width : 30%" colspan = "3">
+								  <input type="text" class = "form-control" id ="urgent_message">
+								  </th>
+								</tr>
+							  </tbody>
+							</table>
+
+							<div class="box-footer text-center">
+							  <button type="button" class="btn btn-sm btn-primary btn-add-ncr" data-ano="778" onclick ="pop_urgent_add()">등록</button>
+							  <button class="btn btn-sm btn-danger" type="button" data-dismiss="modal">닫기</button>
+							</div>
+							
+							  
+
+						  </div>
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+
+				</div>
+            </div>
+        </div>
+    </div>
+	
+
+	
+	<script src="js/main_contents.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+</body>
+
+</html>
+
+
+<script>
+document.getElementById('management').style.background='khaki';
+	
+	
+	//외주 등록 버튼 눌렸을때 외주 등록 할 수 있는 모달 창 띄우는 함수
+	function pop_outsource_add_select(no) {
+		all_no = no;
+		const laiser_out_com = document.querySelector('laiser_out_com');
+		const bending_out_com = document.querySelector('bending_out_com');
+		const welding_out_com = document.querySelector('welding_out_com');
+		let arr = [];
+		let submit_args = '';
+			submit_args += commonFunc.makeArgs("no", no);
+			const ret = commonFunc.postArgs("/pop_outsource_add_select", submit_args);
+			$('#no').attr('value',ret[0].no);
+			$('#customer').attr('value',ret[0].customer);	
+			$('#work_key').attr('value',ret[0].work_no);
+			$('#shipping_date').attr('value',ret[0].shipping_date);
+			$('#order_date').attr('value',ret[0].order_date);
+			$('#laiser_out_com').attr('value',ret[0].laiser_out_com);
+			$('#bending_out_com').attr('value',ret[0].bending_out_com);
+			$('#welding_out_com').attr('value',ret[0].welding_out_com);
+			$('#process_out_com').attr('value',ret[0].process_out_com);
+			console.log(ret[0].status)
+			if (ret[0].status >= 11 && ret[0].status <= 20)
+			{
+				$('#laiser_out_com').attr('disabled',true);
+				$('#bending_out_com').attr('disabled',false);
+				$('#welding_out_com').attr('disabled',false);
+				$('#process_out_com').attr('disabled',false);
+			}
+			else if (ret[0].status >= 21 && ret[0].status <= 30)
+			{
+				$('#laiser_out_com').attr('disabled',true);
+				$('#bending_out_com').attr('disabled',true);
+				$('#welding_out_com').attr('disabled',false);
+				$('#process_out_com').attr('disabled',false);
+			}
+			else if (ret[0].status >= 31 && ret[0].status <= 40)
+			{
+				$('#laiser_out_com').attr('disabled',true);
+				$('#bending_out_com').attr('disabled',true);
+				$('#welding_out_com').attr('disabled',true);
+				$('#process_out_com').attr('disabled',false);
+			}
+			else if (ret[0].status == 100)
+			{
+				$('#laiser_out_com').attr('disabled',true);
+				$('#bending_out_com').attr('disabled',true);
+				$('#welding_out_com').attr('disabled',true);
+				$('#process_out_com').attr('disabled',true);
+			}
+			else {
+				$('#laiser_out_com').attr('disabled',false);
+				$('#bending_out_com').attr('disabled',false);
+				$('#welding_out_com').attr('disabled',false);
+				$('#process_out_com').attr('disabled',false);
+				
+				
+			}
+			if (ret[0].proc.indexOf('L') == -1)
+			{
+				$('#laiser_out_com').attr('disabled',true);
+			}
+			if (ret[0].proc.indexOf('B') == -1)
+			{
+				$('#bending_out_com').attr('disabled',true);
+			}
+			if (ret[0].proc.indexOf('W') == -1)
+			{
+				$('#welding_out_com').attr('disabled',true);
+			}
+			if (ret[0].proc.indexOf('P') == -1)
+			{
+				$('#process_out_com').attr('disabled',true);
+			}
+	}
+	
+	//외주 팝업에서 팝업 닫기 눌렸을때 초기화
+	function pop_outsource_close()
+	{
+		$('#laiser_out_com').attr('disabled', false);
+		$('#bending_out_com').attr('disabled', false);
+		$('#welding_out_com').attr('disabled', false);
+	}
+	
+	//외주 팝업에서 등록 버튼 눌렸을때 값 저장하는 함수
+	function pop_outsource_add(no) {
+		let submit_args = '';
+			submit_args += commonFunc.makeArgs("no", $("#no").val());
+			submit_args += commonFunc.makeArgs("laiser_out_com", $("#laiser_out_com").val());
+			submit_args += commonFunc.makeArgs("bending_out_com", $("#bending_out_com").val());
+			submit_args += commonFunc.makeArgs("welding_out_com", $("#welding_out_com").val());
+			submit_args += commonFunc.makeArgs("process_out_com", $("#process_out_com").val());
+			console.log("tttt")
+			console.log(submit_args)
+			const ret = commonFunc.postArgs("/pop_outsource_add", submit_args);
+			if(ret == 'y'){
+				alert('외주 등록이 완료 되었습니다.');
+				location.href='/management';
+			}
+	
+	}
+
+	//긴급 등록 버튼 눌렸을때 긴급 내용 매핑하는 함수
+	function pop_urgent_select(no) {
+		all_no = no;
+		let arr = [];
+		let submit_args = '';
+			console.log(no)
+			submit_args += commonFunc.makeArgs("no", no);
+			const ret = commonFunc.postArgs("/pop_urgent_select", submit_args);
+			$('#no').attr('value',ret[0].no);
+			$('#urgent_customer').attr('value',ret[0].customer)	
+			$('#urgent_work_key').attr('value',ret[0].work_no);
+			$('#urgent_order_date').attr('value',ret[0].order_date);
+			$('#urgent_shipping_date').attr('value',ret[0].shipping_date);
+			$('#urgent_message').attr('value',ret[0].urgent_message);
+		if($('#urgent_message').val() == '')
+			{
+			$('#urgent_message_del').attr('disabled',true);
+			}
+	}	
+	
+	//긴급 팝업에서 등록 버튼 눌렸을때 값 저장하는 함수
+	function pop_urgent_add(no) {
+		let submit_args = '';
+			submit_args += commonFunc.makeArgs("no", $("#no").val());
+			submit_args += commonFunc.makeArgs("urgent_message", $("#urgent_message").val());
+			console.log(submit_args)
+			const ret = commonFunc.postArgs("/pop_urgent_add", submit_args);
+			if(ret == 'y'){
+				alert('긴급 메세지가 등록 되었습니다.');
+				location.href='/management';
+			}
+	
+	}
+	
+	//긴급 팝업에서 삭제 버튼 눌렸을때 작동하는 함수
+	function pop_urgent_delete(no) {
+		let submit_args = '';
+			submit_args += commonFunc.makeArgs("no", $("#no").val());
+			submit_args += commonFunc.makeArgs("urgent_message", $("#urgent_message").val());
+			console.log(submit_args)
+			const ret = commonFunc.postArgs("/pop_urgent_delete", submit_args);
+			if (confirm("긴급 메세지를 삭제 하시겠습니까?")) {
+				if(ret == 'y'){
+				alert('긴급 메세지가 삭제 되었습니다.');
+				location.href='/management';
+				}
+			} 
+			else {}
+	
+	}
+	//등록 버튼 눌렸을 때 동작하는 함수
+	function order_first_start(no,work_key,filename,key_no){
+		console.log(no)
+ 		 alert("공정을 시작 합니다..")
+			all_no = no;	
+			let submit_args = '';
+			submit_args += commonFunc.makeArgs("no", no);
+			submit_args += commonFunc.makeArgs("work_key", work_key);
+			submit_args += commonFunc.makeArgs("filename", filename);
+			submit_args += commonFunc.makeArgs("key_no", key_no);
+			const ret = commonFunc.postArgs("/order_first_start", submit_args);
+			location.href='/management';
+	
+
+} 
+	
+function modal(id) {
+    var zIndex = 9999;
+    var modal = document.getElementById(id);
+
+    // 모달 div 뒤에 희끄무레한 레이어
+    var bg = document.createElement('div');
+    bg.setStyle({
+        position: 'fixed',
+        zIndex: zIndex,
+        left: '0px',
+        top: '0px',
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
+        // 레이어 색갈은 여기서 바꾸면 됨
+        backgroundColor: 'rgba(0,0,0,0.4)'
+    });
+    document.body.append(bg);
+
+    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+        bg.remove();
+        modal.style.display = 'none';
+    });
+
+    modal.setStyle({
+        position: 'fixed',
+        display: 'block',
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+        // 시꺼먼 레이어 보다 한칸 위에 보이기
+        zIndex: zIndex + 1,
+
+        // div center 정렬
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        msTransform: 'translate(-50%, -50%)',
+        webkitTransform: 'translate(-50%, -50%)'
+    });
+}
+
+// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+Element.prototype.setStyle = function(styles) {
+    for (var k in styles) this.style[k] = styles[k];
+    return this;
+};
+
+// document.getElementById('popup_open_btn').addEventListener('click', function() {
+//     // 모달창 띄우기
+//     modal('my_modal');
+// });
+var timer = setInterval(count, 1000);
+var con = 60
+function count() {
+   document.querySelector("#count").innerText = con--;
+	if(con == 0){
+		location.reload();
+	}
+}
+function re(){
+	location.reload();
+}
+
+</script>

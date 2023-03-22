@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="shortcut icon" href="#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>TECH_IN</title>
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<!--J 쿼리 사용 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+	
+<style>
+    #my_modal {
+        display: none;
+        width: 600px;
+        padding: 20px 60px;
+        background-color: #fefefe;
+        border: 1px solid #888;
+        border-radius: 3px;
+    }
+
+    #my_modal .modal_close_btn {
+        top: 10px;
+        right: 10px;
+    }
+</style>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">TECH_IN </div>
+            </a>
+			<%-include('../siderbar.ejs')%>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+			
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					
+				
+				   <!-- Sidebar Toggle (Topbar) -->
+          
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <!-- Dropdown - Alerts -->
+             
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <!-- Dropdown - Messages -->
+                        </li>
+
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+             
+                    <!-- DataTales Example -->
+               <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+							
+                            <h6 class="m-0 font-weight-bold text-primary">작업 현황</h6>
+						 </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+										
+                                        <tr>
+											<th>시작 시간</th>	
+                                            <th>구분</th>
+											<th >레이저</th>
+											<th>절곡</th>
+											<th>용접</th>
+											<th>완료</th>
+                                           
+                                            <th>고객명</th>
+                                            <th>프로그램명</th>
+                                            <th>작업 수량</th>
+                                            <th>재질</th>
+											<th>두께</th>
+											
+											
+                                        </tr>
+                                    </thead>
+                         
+                                    <tbody>
+                                        <tr>
+											<td>15:58</td>
+                                            <td>레이저 대기</td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td></td>
+											<td></td>
+											<td></td>
+                                            
+                                            <td>PNT김복음(486)</td>
+                                            <td>S1747</td>
+                                            <td>3매</td>
+											<td>SUS</td>
+                                            <td>3T</td>
+											
+											
+                                        </tr>
+									<tr>
+											<td>13:11</td>
+                                            <td>절곡 진행 중</td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td></td>
+											<td></td>
+                                            
+                                            <td>PNT실무자1(487)</td>
+                                            <td>S1747</td>
+                                            <td>15매</td>
+											<td>SUS</td>
+                                            <td>1T</td>
+											
+											
+                                        </tr>
+										<tr>
+											<td>13:00</td>
+                                            <td>용접 진행 중</td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td></td>
+                                            
+                                            <td>PNT실무자2(488)</td>
+                                            <td>S1747</td>
+                                            <td>1매</td>
+											<td>SUS</td>
+                                            <td>2T</td>
+											
+											
+                                        </tr>
+										<tr>
+											<td>10:58</td>
+                                            <td>용접 진행 중</td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td></td>
+                                           
+                                            <td>PNT실무자3(489)</td>
+                                            <td>S1747</td>
+                                            <td>9매</td>
+											<td>SUS</td>
+                                            <td>6T</td>
+											
+											
+                                        </tr>
+										<tr>
+											<td>09:30</td>
+                                            <td>완료</td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+											<td style='    background-color: #a1e1ae;'></td>
+                                            
+                                            <td>PNT실무자4(490)</td>
+                                            <td>S1747</td>
+                                            <td>5매</td>
+											<td>SUS</td>
+                                            <td>2T</td>
+											
+											
+                                        </tr>
+                                    </tbody>
+                                </table>
+								<div style = "float : right; padding-top : 10px">
+									
+                       			</div>
+                            
+							</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+		
+
+	<!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<!-- 등록 버튼 모달-->
+	    <div class="modal fade" id="addModal" data-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div id="model_view_10">
+
+				  <div class="modal-header">
+					<h4 class="modal-title"><i class="fa fa-pencil-square-o"></i> 출하 정보 등록</h4>
+				  </div>
+
+				  <div class="modal-body">
+					<div class="box-body">
+
+					  <div class="">
+						<div class="col-xs-12">
+						  <div class="box">
+
+							<input type="hidden" name="ano" id="ano" value="778">
+							<input type="hidden" name="company" id="company" value="part1_업체">
+					 
+
+							<table class="table tb-list table-bordered">
+							  <tbody>
+								<tr>
+								  <th style = "width : 20%">프로젝트 코드</th>
+						 		  <th style = "width : 30%">
+								  <input type="text" class = "form-control">
+								  </th>
+								  <th class = "width : 25%">도면번호</th>
+								  <th style = "width : 25%">
+								  <input type="text" class = "form-control">
+								  </th>
+								</tr>
+								 <tr>
+								  <th class = "">제품 코드</th>
+								  <th>
+								  <input type="text" class = "form-control">
+								  </th>
+								  <th class = "">BOM등록일자</th>
+								  <th>
+								  <input type="text" class = "form-control">
+								  </th>	 
+								</tr>
+								 <tr>
+								  <th class = "">프로젝트 명</th>
+								  <th>
+								  <input type="text" class = "form-control">
+								  </th>
+								  <th class = "">QR번호</th>
+								  <th>
+								  <input type="text" class = "form-control">
+								  </th>
+								</tr>
+								 <tr>
+								  <th class = "">모품목 코드</th>
+								  <th>
+								  <input type="text" class = "form-control">
+								  </th>
+								  <th class = ""></th>
+								  <th>
+								  </th>
+								</tr>
+								<tr>
+								 <th class = "">품명</th>
+								 <th>
+								 <input type="text" class = "form-control">
+								 </th>
+								 <th class = ""></th>
+								 <th>
+								 </th>	    
+								</tr>
+							  </tbody>
+							</table>
+
+							<div class="box-footer text-center">
+							  <button type="button" class="btn btn-sm btn-primary btn-add-ncr" data-ano="778">등록</button>
+							  <button class="btn btn-sm btn-default modal_close_btn" type="button" data-dismiss="modal">닫기</button>
+								
+							</div>
+
+
+						  </div>
+						</div>
+					  </div>
+
+					</div>
+
+				  </div>
+
+				</div>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+				<div class="modal in" id="my_modal" data-backdrop="static" tabindex="-1" style="display: none;">
+					<div class="modal-dialog modal-lg">
+			  			<div class="modal-content">
+							<div id="model_view_10">
+								<div class="modal-header">
+									<h4 class="modal-title"><i class="fa fa-pencil-square-o"></i>Grid created</h4>
+				  				</div>	  
+				  <div class="modal-body">
+					<div class="box-body">
+					  <div class="row">
+						<div class="col-xs-12">
+						  <div class="box">
+							<input type="hidden" name="ano" id="ano" value="778">
+							<input type="hidden" name="company" id="company" value="part1_업체">
+							<table class="table tb-list table-bordered">
+							  <tbody>
+								<tr>
+								  <th style="width:25%; ">menu name</th>
+								  <td><input type="text" class="form-control valid" name="grid_name" id="grid_name" values = ""></td>
+								</tr>
+								  <tr>
+								  <th style="width:20%; ">Data list</th>
+								  <td class = "column_list"><input type="text" class="form-control valid" name="column_name_0" id="column_name_0" values = ""></td>
+								</tr>
+							  </tbody>
+							</table>
+							  <div >
+								<a href="#" class = "btn btn-danger btn-list-del" style = "width: 35px;" id="column_del"> -</a>
+							  <a href="#" class = "btn btn-primary pull-right" style = "width: 35px;" id="column_add"> +</a>  
+							  </div>
+							  
+
+
+							
+
+
+							<form action="http://ospis2022.onop.co.kr/auditor/ncr_list_delete/" name="ncr_list_form" id="ncr_list_form" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+							  <input type="hidden" name="csrf_test_name" value="3fdcc6b9bdd2a9a7ba100610aaa7f61f">
+							  <table class="table table-hover table-bordered tb-list">
+								<tbody>
+								</tbody>
+							  </table>
+							  <button type="submit" class="btn-ncr-del-submit" style="display:none"></button>
+							</form>
+							<div class="box-footer text-center">
+							  <button type="button" class="btn btn-sm btn-primary btn-add-ncr" id="column_last_add">생성</button>
+							  <button type="button" class="btn btn-sm btn-default modal_close_btn">닫기</button>
+										</div>
+						  			</div>
+								</div>
+					  		</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="js/main_contents.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+	<script src="js/scripts.js"></script>
+</body>
+
+</html>
+
+
+<script>
+	
+	
+function modal(id) {
+    var zIndex = 9999;
+    var modal = document.getElementById(id);
+
+    // 모달 div 뒤에 희끄무레한 레이어
+    var bg = document.createElement('div');
+    bg.setStyle({
+        position: 'fixed',
+        zIndex: zIndex,
+        left: '0px',
+        top: '0px',
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
+        // 레이어 색갈은 여기서 바꾸면 됨
+        backgroundColor: 'rgba(0,0,0,0.4)'
+    });
+    document.body.append(bg);
+
+    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+        bg.remove();
+        modal.style.display = 'none';
+    });
+
+    modal.setStyle({
+        position: 'fixed',
+        display: 'block',
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+        // 시꺼먼 레이어 보다 한칸 위에 보이기
+        zIndex: zIndex + 1,
+
+        // div center 정렬
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        msTransform: 'translate(-50%, -50%)',
+        webkitTransform: 'translate(-50%, -50%)'
+    });
+}
+
+// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+Element.prototype.setStyle = function(styles) {
+    for (var k in styles) this.style[k] = styles[k];
+    return this;
+};
+
+// document.getElementById('popup_open_btn').addEventListener('click', function() {
+//     // 모달창 띄우기
+//     modal('my_modal');
+// });
+	
+document.getElementById('status').style.background='khaki';
+</script>

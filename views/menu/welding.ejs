@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="shortcut icon" href="#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>TECH_IN</title>
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="css/common.css" rel="stylesheet">
+	<!--J 쿼리 사용 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Custom styles for this page -->
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+</head>
+	
+<style>
+    #my_modal {
+        display: none;
+        width: 600px;
+        padding: 20px 60px;
+        background-color: #fefefe;
+        border: 1px solid #888;
+        border-radius: 3px;
+    }
+
+    #my_modal .modal_close_btn {
+        top: 10px;
+        right: 10px;
+    }
+</style>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">TECH_IN </div>
+            </a>
+			<%-include('../siderbar.ejs')%>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+			
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+					
+				
+				   <!-- Sidebar Toggle (Topbar) -->
+          
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <!-- Dropdown - Alerts -->
+             
+                        <!-- Nav Item - Messages -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <!-- Dropdown - Messages -->
+                        </li>
+
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <button type = "button" class = "btn btn-primary btn-sm" onclick = "re()" style = "background-color: #808cf5; border-color: #808cf5;" id = "count">60</button>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+             
+                    <!-- DataTales Example -->
+               <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+							
+                            <h6 class="m-0 font-weight-bold text-primary">용접 작업 현황</h6>
+						 </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+								<table class="table table-bordered" style = "width : 50% ; margin-left : 400px;">
+								  <tr>
+									<td colspan = "3" style ="color : black; background-color: yellow;"><b>긴급메세지</b></td>
+								  </tr>
+									<% for(var i = 0; i < row.length; i++) { %>
+										<% 	if (row[i].urgent_message != '') 
+											{%> 
+													<tr>
+														<td class = "urgent_style" style = "width: 6%;"><b><%=i+1%></b></td>
+														<td class = "urgent_style" style = "width: 20%;"><b><%=row[i].customer%></b></td>
+														<td style = "text-align: left;"><b><%=row[i].urgent_message%></b></td>
+													</tr>
+											<%}
+											else if(row[i].urgent_message == '') 
+											{ %><% }
+										%>
+									<% } %>
+								</table>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+										
+                                        <tr>
+											<th>no</th>	
+                                            <th>번호(고객명)</th>
+											<th>작번</th>
+											<th>납기일</th>
+											<th class ="big_process_stat1" style = "width : 7%">레이저</th>
+                                            <th class ="big_process_stat1" style = "width : 7%">절곡</th>
+											<th class ="big_process_stat1" style = "width : 7%">용접</th>
+                                            <th class ="big_process_stat1" style = "width : 7%">후처리</th>
+                                            <th>재질</th>
+                                            <th>두께</th>
+											<th>자재</th>
+											<th>수량</th>
+											<th>프로그램명</th>
+
+                                        </tr>
+                                    </thead>
+                         
+                                    <tbody>
+                                       <% for(var i = 0; i < row.length; i++) { %>
+										<tr>
+										<% if (row[i].urgent_message == '') 
+												{ %> <td><%=i+1%></td><% }
+											   else if (row[i].urgent_message != '')
+												{ %> <td class = "urgent_style"><b><%=i+1%></b></td><% }
+										%> 
+										<% if (row[i].urgent_message == '') 
+												{ %> <td><%=row[i].customer%></td><% }
+											   else if (row[i].urgent_message != '')
+												{ %> <td class = "urgent_style"><b><%=row[i].customer%></b></td><% }
+										%> 
+											<td><%=row[i].work_no%></td>
+											<td><%=row[i].shipping_date%></td>
+										<% 	if(row[i].proc.indexOf('L') == -1)
+											{ %><td class ="big_process_stat"></td><% } // L이 없으면 빈칸으로 나타냅니다
+											else if (row[i].proc.indexOf('L') !==-1 && row[i].status ==10 && row[i].laiser_out_com !== '') //외주가 있으므로 외주처리 
+											{%><td class ="big_process_stat"><%=row[i].laiser_out_com%></td><% } 
+											else if (row[i].proc.indexOf('L') !==-1 && row[i].status ==10) //10 아직 시작 전이기 때문에 빈칸으로 처리
+											{%><td class ="big_process_stat">대기</td><% } 
+											else if (row[i].proc.indexOf('L') !==-1 && row[i].status ==11) //11 시작했으니 진행중으로 나타냄
+											{%><td class ="big_process_stat">진행중</td><% } 
+											else if (row[i].proc.indexOf('L') !==-1 && row[i].status >=12 && row[i].laiser_out_com == '') //완료했고, laiser_out_com외주가 없으면 완료 
+											{%><td class = "process_stat"><b>완료</b></td><% } 
+											else if (row[i].proc.indexOf('L') !==-1 && row[i].status >=12 && row[i].laiser_out_com !== '') //완료했고, laiser_out_com외주가 있으면 완료(외주)
+											{%><td class = "process_stat"><b><%=row[i].laiser_out_com%></b></td><% } 
+										%>
+										<% 	if (row[i].proc.indexOf('B') == -1) //B가 없으면 빈칸으로 나타냅니다
+											{ %><td class ="big_process_stat"></td><% }
+											else if (row[i].proc.indexOf('B') !==-1 && row[i].status <= 20 && row[i].bending_out_com !== '') //외주가 있기때문에 외주로 처리합니다.
+											{%><td class ="big_process_stat"><%=row[i].bending_out_com%></td><% } 
+											else if (row[i].proc.indexOf('B') !==-1 && row[i].status <20) //(laiser) 공정이 덜 되었기 때문에 공정대기로 처리합니다.
+											{%><td class = "big_process_stat">대기</td><% } 
+											else if (row[i].proc.indexOf('B') !==-1 && row[i].status == 20) //(bedning) 공정이 시작되지 않았기 때문에 작업전으로 처리합니다.
+											{%><td class ="big_process_stat">대기</td><% } 	
+											else if (row[i].proc.indexOf('B') !==-1 && row[i].status == 21) //(bedning) 공정이 시작되었기 때문에 진행중으로 처리합니다.
+											{%><td class ="big_process_stat">진행중</td><% } 
+											else if (row[i].proc.indexOf('B') !==-1 && row[i].status >=22 && row[i].bending_out_com !== '') //작업 완료가 되었고, 외주칸이 비어있지 않기 때문에 완료(외주)
+											{%><td class = "process_stat"><b><%=row[i].bending_out_com%></b></td><% } 
+											else if (row[i].proc.indexOf('B') !==-1 && row[i].status >=22) // 작업완료가 되었고 외주칸이 비어있기 때문에 완료
+											{ %><td class = "process_stat"><b>완료</b><% }
+										%>
+										<% 	if (row[i].status < 22  && row[i].welding_out_com !== '')
+												{ %><td class ="big_process_stat"><%=row[i].welding_out_com%></td><% }
+											else if(row[i].status <= 22 && row[i].status >= 20) //상태가 20이상 22 이하면 절곡을 진행 상태이니
+											{ %><td class ="big_process_stat">대기</td><% }
+											else if (row[i].proc.indexOf('B') == -1 && row[i].status <= 11) //laiser만 공정이 있고, 절곡이 없고 용접으로 오는경우
+											{ %><td class = "big_process_stat">대기</td><% }	
+											else if (row[i].status == 30 && row[i].welding_out_com == '') 	//용접 작업을 해야하고 외주가 없다면 작업시작이 뜨는게 맞음
+											{%><td class ="big_process_stat"><button type = "button" class = "btn btn-primary btn-lg" date-ano = "" onclick = "welding_start(<%=row[i].no%>)">작업 시작</button></td><% } 
+											else if(row[i].status == 30 && row[i].welding_out_com != '') //용접 작업을 해야하고 외주가 있다면 외주업체가 뜨는게 맞음
+											{ %><td class ="big_process_stat"><button type ="button" class  = "btn btn-primary btn-lg" date-ano = "" onclick = "welding_next_out(<%=row[i].no%>)"><%=row[i].welding_out_com%></button></td><% }
+											else if(row[i].status == 31) //용접 작업을 시작했으면 끝 버튼이 뜨는게 맞음
+											{ %><td class ="big_process_stat"><button type = "button" class = "btn btn-primary btn-lg" style ="background :#e7954f; border:#e7954f" date-ano = "" onclick = "welding_next(<%=row[i].no%>)">작업완료</button></td><% }
+											else { %><td class = "big_process_stat">대기</td><% }
+										%>
+										<% 	if (row[i].proc.indexOf('P') !==-1 && row[i].process_out_com !='') 
+											{%><td class ="big_process_stat"><%=row[i].process_out_com%></td><% }
+											else if (row[i].proc.indexOf('P') !==-1 && row[i].status >=10 && row[i].status < 32) 
+											{%><td class ="big_process_stat">대기</td><% }
+											else{ %><td class ="big_process_stat"></td><% }
+										%>
+											<td><%=row[i].quality%></td>
+											<td><%=row[i].thickness%></td>
+											<td><%=row[i].materials_max%></td>
+											<td><%=row[i].work_qty%></td>
+											<td><%=row[i].program_name%></td>
+                                        </tr>
+									<% } %>
+                                    </tbody>
+                                </table>
+								<div style = "float : right; padding-top : 10px">
+									
+                       			</div>
+                            
+							</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+		
+
+	<!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script src="js/main_contents.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+</body>
+
+</html>
+
+
+<script>
+var all_no = '';
+
+//작업 시작 버튼 누르면 동작하는 함수
+function welding_start(no){
+	alert("작업을 시작 합니다.")
+	all_no = no;	
+	let submit_args = '';
+	submit_args += commonFunc.makeArgs("no", no);
+	const ret = commonFunc.postArgs("/welding_order_start", submit_args);
+	location.href='/welding';	
+}
+
+//작업 완료 버튼 누르면 동작하는 함수
+function welding_end(no){
+		alert("작업이 완료 되었습니다.")
+		all_no = no;
+		let submit_args = '';
+		submit_args += commonFunc.makeArgs("no", no);
+		const ret = commonFunc.postArgs("/welding_order_end", submit_args);
+		location.href='/welding';	
+}
+
+//다음 공정 버튼 누르면 동작하는 함수
+function welding_next(no){
+	alert("공정이 진행 되었습니다.")
+	all_no = no;
+	let submit_args ='';
+	submit_args += commonFunc.makeArgs("no", no);
+	const ret = commonFunc.postArgs("/welding_order_next", submit_args);
+	location.href='/welding'
+}
+	
+function welding_next_out(no){
+	alert("외주작업이 완료 되었습니다.")
+	all_no = no;
+	let submit_args ='';
+	submit_args += commonFunc.makeArgs("no", no);
+	const ret = commonFunc.postArgs("/welding_order_next", submit_args);
+	location.href='/welding'
+}	
+	
+function modal(id) {
+    var zIndex = 9999;
+    var modal = document.getElementById(id);
+
+    // 모달 div 뒤에 희끄무레한 레이어
+    var bg = document.createElement('div');
+    bg.setStyle({
+        position: 'fixed',
+        zIndex: zIndex,
+        left: '0px',
+        top: '0px',
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
+        // 레이어 색갈은 여기서 바꾸면 됨
+        backgroundColor: 'rgba(0,0,0,0.4)'
+    });
+    document.body.append(bg);
+
+    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+        bg.remove();
+        modal.style.display = 'none';
+    });
+
+    modal.setStyle({
+        position: 'fixed',
+        display: 'block',
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+        // 시꺼먼 레이어 보다 한칸 위에 보이기
+        zIndex: zIndex + 1,
+
+        // div center 정렬
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        msTransform: 'translate(-50%, -50%)',
+        webkitTransform: 'translate(-50%, -50%)'
+    });
+}
+
+// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+Element.prototype.setStyle = function(styles) {
+    for (var k in styles) this.style[k] = styles[k];
+    return this;
+};
+
+// document.getElementById('popup_open_btn').addEventListener('click', function() {
+//     // 모달창 띄우기
+//     modal('my_modal');
+// });
+
+
+	
+document.getElementById('welding').style.background='khaki';
+	
+var timer = setInterval(count, 1000);
+var con = 60
+function count() {
+   document.querySelector("#count").innerText = con--;
+	if(con == 0){
+		location.reload();
+	}
+}
+function re(){
+	location.reload();
+}
+</script>

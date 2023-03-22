@@ -1,0 +1,53 @@
+	<style>
+a.collapse-item {
+  font-size: 200%;
+  margin-bottom :10px;
+}
+</style>		
+
+
+			
+
+
+
+		
+			<li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>공정 현황</span>
+                </a>
+                <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" id="cad"onclick="url_change(id)">CAD</a>
+						<a class="collapse-item" id="management"onclick="url_change(id)">관리</a>
+                        <!--
+						<a class="collapse-item" id="status"onclick="url_change(id)">작업 현황</a>
+                        <a class="collapse-item" id="work_order"onclick="url_change(id)">작업 지시</a>
+						-->
+                        <a class="collapse-item" id="laiser"onclick="url_change(id)">레이저</a>
+						<a class="collapse-item" id="bending"onclick="url_change(id)">절곡</a>
+                        <a class="collapse-item" id="welding"onclick="url_change(id)">용접</a>
+						<a class="collapse-item" id="post_process"onclick="url_change(id)">후처리</a>
+                        <a class="collapse-item" id="shipping"onclick="url_change(id)">납품</a>
+						<a class="collapse-item" id="shipping_history"onclick="url_change(id)">납품현황</a>
+                    </div>
+                </div>
+            </li>
+
+				
+	
+
+
+
+<script>
+	const id_url = '';
+	function url_change(id) {
+		window.location.href = '/'+id
+		id_url = id;
+	};
+	
+	
+
+	
+</script>
